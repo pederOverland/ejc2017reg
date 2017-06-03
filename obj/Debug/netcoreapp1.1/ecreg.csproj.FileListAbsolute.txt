@@ -1,0 +1,8 @@
+C:\Users\PederHans\code\ecreg\bin\Debug\netcoreapp1.1\ecreg.deps.json
+C:\Users\PederHans\code\ecreg\bin\Debug\netcoreapp1.1\ecreg.runtimeconfig.json
+C:\Users\PederHans\code\ecreg\bin\Debug\netcoreapp1.1\ecreg.runtimeconfig.dev.json
+C:\Users\PederHans\code\ecreg\bin\Debug\netcoreapp1.1\ecreg.dll
+C:\Users\PederHans\code\ecreg\bin\Debug\netcoreapp1.1\ecreg.pdb
+C:\Users\PederHans\code\ecreg\obj\Debug\netcoreapp1.1\ecreg.AssemblyInfo.cs
+C:\Users\PederHans\code\ecreg\obj\Debug\netcoreapp1.1\ecreg.dll
+C:\Users\PederHans\code\ecreg\obj\Debug\netcoreapp1.1\ecreg.pdb

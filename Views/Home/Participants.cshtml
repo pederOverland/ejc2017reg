@@ -1,0 +1,97 @@
+@model IEnumerable<ecreg.Models.Contestant>
+@{
+    ViewData["Title"] = "Participants";
+    var contestant = ViewData["contestant"] as ecreg.Models.Contestant;
+    var choices = new List<SelectListItem>{
+        new SelectListItem{Text= "Athlete", Value="Athlete"},
+        new SelectListItem{Text= "Coach", Value="Coach"},
+        new SelectListItem{Text= "Judge", Value="Judge"},
+        new SelectListItem{Text= "Team Leader", Value="Team Leader"},
+        new SelectListItem{Text= "Official", Value="Official"},
+        new SelectListItem{Text= "Medical", Value="Medical"},
+        new SelectListItem{Text= "Press", Value="Press"}
+        };
+        if(contestant != null){
+            choices.FirstOrDefault(x=>x.Value==contestant.Role).Selected = true;
+        }
+}
+
+<div class="row">
+    <div class="col-md-12">
+                <h2>@(contestant != null ? "Edit participant" : "Enter participant")</h2>
+        <form class="form-horizontal clearfix" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Upload">
+            <div class="col-md-4">
+                <input type="hidden" name="Nation" value="Norway" />
+                @if(contestant !=null){
+                    <input type="hidden" name="ContestantId" value="@(contestant?.ContestantId)" />
+                }
+                <div class="form-group">
+                    <label for="Picture">Picture</label>
+                    <input class="form-control" type="file" name="Picture" />
+                </div>
+                <div class="form-group">
+                    <label for="Name">Name</label>
+                    <input class="form-control" type="text" name="Name" value="@(contestant?.Name)" />
+                </div>
+                <div class="form-group">
+                    <label for="Birthdate">Birthdate</label>
+                    <input class="form-control" type="date" name="BirthDate" value="@(contestant?.BirthDate.ToString("yyyy-MM-dd"))" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="Passport #">Passport #</label>
+                    <input class="form-control" type="text" name="PassportNumber" value="@(contestant?.PassportNumber)" />
+                </div>
+                <div class="form-group">
+                    <label for="Role">Role</label>
+                    @Html.DropDownList("Role", choices, new {@class="form-control"})
+                </div>
+                <div class="form-group">
+                        <input class="btn btn-lg btn-success" type="submit" value="Submit" />
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h4>General Passport Photo Requirements</h4>
+                <ul>
+                    <li>Neutral facial expression: a. do not open mouth; b. open eyes.</li>
+                    <li>No glasses; No Hat.</li>
+                    <li>Don't cover eyebrows with hair.</li>
+                    <li>Ears must be clearly seen.</li>
+                </ul>
+                <strong>Picture formats: jpg,tiff</strong>
+            </div>
+        </form>
+        </div>
+    </div>
+<div class="row">
+    <div class="col-md-12">
+        <h2>Entered participants:</h2>
+    </div>
+    @foreach(var c in Model){
+        <div class="col-md-12">
+                <div class="col-md-2">
+                    <img class="img-responsive" src="@("/profiles/"+c.ContestantId+"_"+c.Nation+".jpg")" alt="">
+                </div>
+                <div class="col-md-7">
+                    <h3>@c.Role <small>@c.Name</small></h3>
+                    <dl class="dl-horizontal">
+                        <dt>Passport #</dt>
+                        <dd>@c.PassportNumber</dd>
+                        <dt>Birthdate</dt>
+                        <dd>@c.BirthDate.ToString("dd-MM-yyyy")</dd>    
+                    </dl>
+                </div>
+                    <div class="col-md-3">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Edit">
+                        <input type="hidden" name="ContestantId" value="@(c.ContestantId)" />
+                        <input class="btn btn-warning" type="submit" value="Edit" />
+                    </form>
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Delete">
+                        <input type="hidden" name="ContestantId" value="@(c.ContestantId)" />
+                        <input class="btn btn-danger" type="submit" value="Delete" />
+                    </form>
+                    </div>
+        </div>  
+    }
+</div>
