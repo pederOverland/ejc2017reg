@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ecreg
 {
@@ -108,8 +109,8 @@ namespace ecreg
                         {
                             if (postLogoutUri.StartsWith("/"))
                             {
-                    // transform to absolute
-                    var request = context.Request;
+                                // transform to absolute
+                                var request = context.Request;
                                 postLogoutUri = request.Scheme + "://" + request.Host + request.PathBase + postLogoutUri;
                             }
                             logoutUri += $"&returnTo={ Uri.EscapeDataString(postLogoutUri)}";
@@ -124,6 +125,7 @@ namespace ecreg
             };
             options.Scope.Clear();
             options.Scope.Add("openid");
+            options.Scope.Add("profile");
             app.UseOpenIdConnectAuthentication(options);
 
 

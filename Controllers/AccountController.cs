@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 
 public class AccountController : Controller
 {
-    public IActionResult Login()
+    public IActionResult Login([FromQuery] string ReturnUrl = "/")
     {
-        return new ChallengeResult("Auth0", new AuthenticationProperties() { RedirectUri = "/" });
+        return new ChallengeResult("Auth0", new AuthenticationProperties() { RedirectUri = ReturnUrl });
     }
 
     public async Task Logout()

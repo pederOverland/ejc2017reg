@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using ecreg.Data;
 using ecreg.Models;
+using ImageSharp;
+using ImageSharp.Processing;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using PhotoSauce.MagicScaler;
+using Newtonsoft.Json;
 
 namespace ecreg.Controllers
 {
     public class HomeController : Controller
     {
         private readonly EcRegDb _db;
+        private static ResizeOptions _resizeOptions = new ResizeOptions { Size = new Size(400, 400), Mode = ResizeMode.Max };
         public HomeController(EcRegDb db)
         {
             _db = db;
@@ -41,25 +46,44 @@ namespace ecreg.Controllers
         [Authorize]
         public IActionResult Participants()
         {
-            var contestants = _db.Contestants.Where(x => x.Nation == "Norway");
-            return View(contestants);
+            var nation = _getNation(User);
+            ViewData["nation"] = nation;
+            ViewData["contestants"] = _getContestants(nation).ToList();
+            return View(null);
+        }
+
+
+        private IEnumerable<Contestant> _getContestants(string nation){
+            return nation == "admin" ? _db.Contestants : _db.Contestants.Where(x=>x.Nation==nation);
+        }
+
+        private string _getNation(ClaimsPrincipal user)
+        {
+            var cString = user.Claims.FirstOrDefault(x => x.Type.Equals("user_metadata"))?.Value;
+            var data = JsonConvert.DeserializeAnonymousType(cString, new { Nation = "" });
+            return data.Nation;
         }
 
         [HttpPost]
         public IActionResult Upload(Contestant c)
         {
             c.Modified = DateTime.Now;
-            if(c.ContestantId!=0){
+            if (c.ContestantId != 0)
+            {
                 _db.Update(c);
-            }else{
+            }
+            else
+            {
                 _db.Add(c);
             }
             _db.SaveChanges();
             if (c.Picture != null)
             {
-                using (var outStream = new FileStream(@"wwwroot/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg", FileMode.Create))
+                using (var image = Image.Load(c.Picture.OpenReadStream()))
                 {
-                    MagicImageProcessor.ProcessImage(c.Picture.OpenReadStream(), outStream, new ProcessImageSettings { Width = 400 });
+                    var outName = @"wwwroot/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg";
+                    image.MetaData.Quality = 75;
+                    image.Resize(_resizeOptions).AutoOrient().Save(outName);
                 }
             }
             return RedirectToAction("Participants");
@@ -76,10 +100,12 @@ namespace ecreg.Controllers
         [HttpPost]
         public IActionResult Edit(Contestant c)
         {
-            var contestants = _db.Contestants.Where(x => x.Nation == "Norway").ToList();
+            var nation = _getNation(User);
+            ViewData["nation"] = nation;
+            var contestants = _getContestants(nation).ToList();
             var contestant = contestants.FirstOrDefault(x => x.ContestantId == c.ContestantId);
-            ViewData["contestant"] = contestant;
-            return View("Participants", contestants.Where(x => x.ContestantId != contestant.ContestantId));
+            ViewData["contestants"] = contestants.Where(x => x.ContestantId != contestant.ContestantId).ToList();
+            return View("Participants", contestant);
         }
         public IActionResult Error()
         {

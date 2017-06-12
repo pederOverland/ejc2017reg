@@ -1,29 +1,49 @@
-@model IEnumerable<ecreg.Models.Contestant>
+@model ecreg.Models.Contestant
 @{
     ViewData["Title"] = "Participants";
-    var contestant = ViewData["contestant"] as ecreg.Models.Contestant;
+    var nation = ViewData["nation"] as string;
+    var contestants = ViewData["contestants"] as List<ecreg.Models.Contestant>;
     var choices = new List<SelectListItem>{
-        new SelectListItem{Text= "Athlete", Value="Athlete"},
-        new SelectListItem{Text= "Coach", Value="Coach"},
-        new SelectListItem{Text= "Judge", Value="Judge"},
-        new SelectListItem{Text= "Team Leader", Value="Team Leader"},
-        new SelectListItem{Text= "Official", Value="Official"},
-        new SelectListItem{Text= "Medical", Value="Medical"},
-        new SelectListItem{Text= "Press", Value="Press"}
-        };
-        if(contestant != null){
-            choices.FirstOrDefault(x=>x.Value==contestant.Role).Selected = true;
-        }
+                new SelectListItem{Text= "Athlete", Value="Athlete"},
+                new SelectListItem{Text= "Coach", Value="Coach"},
+                new SelectListItem{Text= "Judge", Value="Judge"},
+                new SelectListItem{Text= "Team Leader", Value="Team Leader"},
+                new SelectListItem{Text= "Official", Value="Official"},
+                new SelectListItem{Text= "Medical", Value="Medical"},
+                new SelectListItem{Text= "Press", Value="Press"}
+                };
+            switch (nation)
+            {
+                case "LEN":
+                    choices = new List<SelectListItem>{
+                    new SelectListItem{Text= "LEN", Value="LEN"}
+                };
+                    break;
+                case "BStK":
+                    choices.Add(new SelectListItem { Text = "Official", Value = "Official" });
+                    choices.Add(new SelectListItem { Text = "LEN", Value = "LEN" });
+                    break;
+            }
+    if(Model != null){
+        choices.FirstOrDefault(x=>x.Value==Model.Role).Selected = true;
+    }
 }
 
 <div class="row">
     <div class="col-md-12">
-                <h2>@(contestant != null ? "Edit participant" : "Enter participant")</h2>
+                <h2>@(Model != null ? "Edit participant" : "Enter participant")</h2>
         <form class="form-horizontal clearfix" method="post" enctype="multipart/form-data" asp-controller="Home" asp-action="Upload">
             <div class="col-md-4">
-                <input type="hidden" name="Nation" value="Norway" />
-                @if(contestant !=null){
-                    <input type="hidden" name="ContestantId" value="@(contestant?.ContestantId)" />
+                @if(nation == "admin"){
+                    <div class="form-group">
+                        <label for="Nation">Nation</label>
+                        <input class="form-control" type="text" name="Nation" value="@(Model?.Nation)" />
+                    </div>
+                }else{
+                    <input type="hidden" name="Nation" value="@(nation)" />
+                }
+                @if(Model !=null){
+                    <input type="hidden" name="ContestantId" value="@(Model?.ContestantId)" />
                 }
                 <div class="form-group">
                     <label for="Picture">Picture</label>
@@ -31,21 +51,25 @@
                 </div>
                 <div class="form-group">
                     <label for="Name">Name</label>
-                    <input class="form-control" type="text" name="Name" value="@(contestant?.Name)" />
+                    <input class="form-control" type="text" name="Name" value="@(Model?.Name)" />
                 </div>
                 <div class="form-group">
                     <label for="Birthdate">Birthdate</label>
-                    <input class="form-control" type="date" name="BirthDate" value="@(contestant?.BirthDate.ToString("yyyy-MM-dd"))" />
+                    <input class="form-control" type="date" name="BirthDate" value="@(Model?.BirthDate.ToString("yyyy-MM-dd"))" />
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="Passport #">Passport #</label>
-                    <input class="form-control" type="text" name="PassportNumber" value="@(contestant?.PassportNumber)" />
+                    <input class="form-control" type="text" name="PassportNumber" value="@(Model?.PassportNumber)" />
                 </div>
                 <div class="form-group">
                     <label for="Role">Role</label>
-                    @Html.DropDownList("Role", choices, new {@class="form-control"})
+                    <select id="Role" name="Role" class="form-control">
+                        @foreach(var c in choices){
+                            <option value="@(c.Value)" selected="@(c.Selected)">@(c.Text)</option>
+                        }
+                    </select>
                 </div>
                 <div class="form-group">
                         <input class="btn btn-lg btn-success" type="submit" value="Submit" />
@@ -68,7 +92,7 @@
     <div class="col-md-12">
         <h2>Entered participants:</h2>
     </div>
-    @foreach(var c in Model){
+    @foreach(var c in contestants){
         <div class="col-md-12">
                 <div class="col-md-2">
                     <img class="img-responsive" src="@("/profiles/"+c.ContestantId+"_"+c.Nation+".jpg")" alt="">
@@ -79,7 +103,7 @@
                         <dt>Passport #</dt>
                         <dd>@c.PassportNumber</dd>
                         <dt>Birthdate</dt>
-                        <dd>@c.BirthDate.ToString("dd-MM-yyyy")</dd>    
+                        <dd>@c.BirthDate.ToString("dd-MM-yyyy")</dd>
                     </dl>
                 </div>
                     <div class="col-md-3">

@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "6a78195f0fa22443dbb292321716b53cd3afdac8"
+    "signature": "bd36fbeaabcad23e5d9c3e61da4bb35ff1bb1de7"
   },
   "compilationOptions": {
     "defines": [
@@ -24,6 +24,7 @@
       "ecreg/1.0.0": {
         "dependencies": {
           "BuildBundlerMinifier": "2.4.337",
+          "ImageSharp": "1.0.0-alpha9-00139",
           "Microsoft.AspNetCore": "1.1.2",
           "Microsoft.AspNetCore.Authentication.Cookies": "1.1.2",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "1.1.2",
@@ -33,8 +34,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "1.1.2",
           "Microsoft.Extensions.Logging.Debug": "1.1.2",
           "Microsoft.NETCore.App": "1.1.2",
-          "Microsoft.VisualStudio.Web.BrowserLink": "1.1.2",
-          "PhotoSauce.MagicScaler": "0.7.1"
+          "Microsoft.VisualStudio.Web.BrowserLink": "1.1.2"
         },
         "runtime": {
           "ecreg.dll": {}
@@ -46,6 +46,23 @@
       "buildbundlerminifier/2.4.337": {
         "dependencies": {
           "NETStandard.Library": "1.6.1"
+        }
+      },
+      "imagesharp/1.0.0-alpha9-00139": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Buffers": "4.3.0",
+          "System.IO.Compression": "4.3.0",
+          "System.Memory": "4.4.0-preview1-25305-02",
+          "System.Numerics.Vectors": "4.3.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0-preview1-25305-02",
+          "System.Threading.Tasks.Parallel": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/ImageSharp.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.3/ImageSharp.dll": {}
         }
       },
       "microsoft.aspnetcore/1.1.2": {
@@ -1171,7 +1188,7 @@
       "microsoft.extensions.primitives/1.1.1": {
         "dependencies": {
           "NETStandard.Library": "1.6.1",
-          "System.Runtime.CompilerServices.Unsafe": "4.3.0"
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0-preview1-25305-02"
         },
         "runtime": {
           "lib/netstandard1.0/Microsoft.Extensions.Primitives.dll": {}
@@ -1321,20 +1338,6 @@
         },
         "compile": {
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
-        }
-      },
-      "photosauce.magicscaler/0.7.1": {
-        "dependencies": {
-          "Microsoft.NETCore.App": "1.1.2",
-          "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Drawing.Primitives": "4.3.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.3.0"
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/PhotoSauce.MagicScaler.dll": {}
-        },
-        "compile": {
-          "lib/netcoreapp1.0/PhotoSauce.MagicScaler.dll": {}
         }
       },
       "remotion.linq/2.1.1": {
@@ -1492,18 +1495,6 @@
           "ref/netstandard1.3/System.Diagnostics.StackTrace.dll": {}
         }
       },
-      "system.drawing.primitives/4.3.0": {
-        "dependencies": {
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
-        },
-        "runtime": {
-          "lib/netstandard1.1/System.Drawing.Primitives.dll": {}
-        },
-        "compile": {
-          "ref/netstandard1.1/System.Drawing.Primitives.dll": {}
-        }
-      },
       "system.identitymodel.tokens.jwt/5.1.2": {
         "dependencies": {
           "Microsoft.IdentityModel.Tokens": "5.1.2"
@@ -1533,6 +1524,18 @@
           "lib/netstandard1.0/System.Interactive.Async.dll": {}
         }
       },
+      "system.memory/4.4.0-preview1-25305-02": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0-preview1-25305-02"
+        },
+        "runtime": {
+          "lib/netstandard1.0/System.Memory.dll": {}
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Memory.dll": {}
+        }
+      },
       "system.net.websockets/4.3.0": {
         "dependencies": {
           "Microsoft.Win32.Primitives": "4.3.0",
@@ -1547,15 +1550,15 @@
           "ref/netstandard1.3/System.Net.WebSockets.dll": {}
         }
       },
-      "system.runtime.compilerservices.unsafe/4.3.0": {
+      "system.runtime.compilerservices.unsafe/4.4.0-preview1-25305-02": {
         "dependencies": {
-          "System.Runtime": "4.3.0"
+          "NETStandard.Library": "1.6.1"
         },
         "runtime": {
           "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "compile": {
-          "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         }
       },
       "system.runtime.serialization.primitives/4.3.0": {
@@ -3266,6 +3269,13 @@
       "path": "buildbundlerminifier/2.4.337",
       "hashPath": "buildbundlerminifier.2.4.337.nupkg.sha512"
     },
+    "imagesharp/1.0.0-alpha9-00139": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QAaEst7QVzo2Jc4ErbAfUzxjOtKBFVe5mrWyX93xVgnXQlcdGrq+iBJYgERM3+UykxC4eM9SEjGzy9mKnbLlLw==",
+      "path": "imagesharp/1.0.0-alpha9-00139",
+      "hashPath": "imagesharp.1.0.0-alpha9-00139.nupkg.sha512"
+    },
     "microsoft.aspnetcore/1.1.2": {
       "type": "package",
       "serviceable": true,
@@ -3868,13 +3878,6 @@
       "path": "newtonsoft.json/9.0.1",
       "hashPath": "newtonsoft.json.9.0.1.nupkg.sha512"
     },
-    "photosauce.magicscaler/0.7.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-HPfTh5wTiUL1RX5SVgqlOTWnkWllFZ0z0mgWO9Kk9bGvjkMaYurtIdXbzfSuFMymUXTXBSTNA4AhgwsfDFSEyw==",
-      "path": "photosauce.magicscaler/0.7.1",
-      "hashPath": "photosauce.magicscaler.0.7.1.nupkg.sha512"
-    },
     "remotion.linq/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -3938,13 +3941,6 @@
       "path": "system.diagnostics.stacktrace/4.3.0",
       "hashPath": "system.diagnostics.stacktrace.4.3.0.nupkg.sha512"
     },
-    "system.drawing.primitives/4.3.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-1QU/c35gwdhvj77fkScXQQbjiVAqIL3fEYn/19NE0CV/ic5TN5PyWAft8HsrbRd4SBLEoErNCkWSzMDc0MmbRw==",
-      "path": "system.drawing.primitives/4.3.0",
-      "hashPath": "system.drawing.primitives.4.3.0.nupkg.sha512"
-    },
     "system.identitymodel.tokens.jwt/5.1.2": {
       "type": "package",
       "serviceable": true,
@@ -3959,6 +3955,13 @@
       "path": "system.interactive.async/3.0.0",
       "hashPath": "system.interactive.async.3.0.0.nupkg.sha512"
     },
+    "system.memory/4.4.0-preview1-25305-02": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fpticQQnqSE6mOjajuAqypTuWRJ/6fDLozurzt2gXoFFWyl7CsrcrR6f5WBN9e+GCGQDyeeSs3yC7pncvZLgdA==",
+      "path": "system.memory/4.4.0-preview1-25305-02",
+      "hashPath": "system.memory.4.4.0-preview1-25305-02.nupkg.sha512"
+    },
     "system.net.websockets/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -3966,12 +3969,12 @@
       "path": "system.net.websockets/4.3.0",
       "hashPath": "system.net.websockets.4.3.0.nupkg.sha512"
     },
-    "system.runtime.compilerservices.unsafe/4.3.0": {
+    "system.runtime.compilerservices.unsafe/4.4.0-preview1-25305-02": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8ncLvq5AYwjgtX/e3vQniNQA+j9BRNPYVGQlvQBVqZ/L1+wIwErDCWUE0XHwENJw5MAkQ0tZW0YOxOBOcMukLw==",
-      "path": "system.runtime.compilerservices.unsafe/4.3.0",
-      "hashPath": "system.runtime.compilerservices.unsafe.4.3.0.nupkg.sha512"
+      "sha512": "sha512-keqowXVd5U8XgkRrZwiA4YCCW4TiuRyjl3Yld+12MW4tBXenjVEAiEyMxI/OnrHKUwvF7IKVE9DjHG+rBg5abg==",
+      "path": "system.runtime.compilerservices.unsafe/4.4.0-preview1-25305-02",
+      "hashPath": "system.runtime.compilerservices.unsafe.4.4.0-preview1-25305-02.nupkg.sha512"
     },
     "system.runtime.serialization.primitives/4.3.0": {
       "type": "package",

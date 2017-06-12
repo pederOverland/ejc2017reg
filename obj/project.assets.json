@@ -11,6 +11,24 @@
           "build/BuildBundlerMinifier.targets": {}
         }
       },
+      "ImageSharp/1.0.0-alpha9-00139": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Buffers": "4.3.0",
+          "System.IO.Compression": "4.3.0",
+          "System.Memory": "4.4.0-preview1-25305-02",
+          "System.Numerics.Vectors": "4.3.0",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0-preview1-25305-02",
+          "System.Threading.Tasks.Parallel": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/ImageSharp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/ImageSharp.dll": {}
+        }
+      },
       "Libuv/1.9.1": {
         "type": "package",
         "dependencies": {
@@ -1762,21 +1780,6 @@
           "lib/netstandard1.0/Newtonsoft.Json.dll": {}
         }
       },
-      "PhotoSauce.MagicScaler/0.7.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.NETCore.App": "1.0.3",
-          "System.ComponentModel.TypeConverter": "4.3.0",
-          "System.Drawing.Primitives": "4.3.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.3.0"
-        },
-        "compile": {
-          "lib/netcoreapp1.0/PhotoSauce.MagicScaler.dll": {}
-        },
-        "runtime": {
-          "lib/netcoreapp1.0/PhotoSauce.MagicScaler.dll": {}
-        }
-      },
       "Remotion.Linq/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -2376,19 +2379,6 @@
           "ref/netstandard1.5/System.Diagnostics.Tracing.dll": {}
         }
       },
-      "System.Drawing.Primitives/4.3.0": {
-        "type": "package",
-        "dependencies": {
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
-        },
-        "compile": {
-          "ref/netstandard1.1/System.Drawing.Primitives.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard1.1/System.Drawing.Primitives.dll": {}
-        }
-      },
       "System.Dynamic.Runtime/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -2757,6 +2747,19 @@
         },
         "runtime": {
           "lib/netstandard1.3/System.Linq.Queryable.dll": {}
+        }
+      },
+      "System.Memory/4.4.0-preview1-25305-02": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.4.0-preview1-25305-02"
+        },
+        "compile": {
+          "ref/netstandard1.0/System.Memory.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/System.Memory.dll": {}
         }
       },
       "System.Net.Http/4.3.2": {
@@ -3180,13 +3183,13 @@
           "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.3.0": {
+      "System.Runtime.CompilerServices.Unsafe/4.4.0-preview1-25305-02": {
         "type": "package",
         "dependencies": {
-          "System.Runtime": "4.3.0"
+          "NETStandard.Library": "1.6.1"
         },
         "compile": {
-          "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
+          "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
         },
         "runtime": {
           "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -3924,6 +3927,19 @@
         "tools/netstandard1.3/BundlerMinifier.dll",
         "tools/netstandard1.3/NUglify.dll",
         "tools/netstandard1.3/Newtonsoft.Json.dll"
+      ]
+    },
+    "ImageSharp/1.0.0-alpha9-00139": {
+      "sha512": "QAaEst7QVzo2Jc4ErbAfUzxjOtKBFVe5mrWyX93xVgnXQlcdGrq+iBJYgERM3+UykxC4eM9SEjGzy9mKnbLlLw==",
+      "type": "package",
+      "path": "imagesharp/1.0.0-alpha9-00139",
+      "files": [
+        "imagesharp.1.0.0-alpha9-00139.nupkg.sha512",
+        "imagesharp.nuspec",
+        "lib/netstandard1.1/ImageSharp.dll",
+        "lib/netstandard1.1/ImageSharp.xml",
+        "lib/netstandard1.3/ImageSharp.dll",
+        "lib/netstandard1.3/ImageSharp.xml"
       ]
     },
     "Libuv/1.9.1": {
@@ -5398,19 +5414,6 @@
         "tools/install.ps1"
       ]
     },
-    "PhotoSauce.MagicScaler/0.7.1": {
-      "sha512": "HPfTh5wTiUL1RX5SVgqlOTWnkWllFZ0z0mgWO9Kk9bGvjkMaYurtIdXbzfSuFMymUXTXBSTNA4AhgwsfDFSEyw==",
-      "type": "package",
-      "path": "photosauce.magicscaler/0.7.1",
-      "files": [
-        "lib/net46/PhotoSauce.MagicScaler.dll",
-        "lib/net46/PhotoSauce.MagicScaler.pdb",
-        "lib/netcoreapp1.0/PhotoSauce.MagicScaler.dll",
-        "lib/netcoreapp1.0/PhotoSauce.MagicScaler.pdb",
-        "photosauce.magicscaler.0.7.1.nupkg.sha512",
-        "photosauce.magicscaler.nuspec"
-      ]
-    },
     "Remotion.Linq/2.1.1": {
       "sha512": "RA0r8qVw4IvBacIIdhBq3OKREppzdkHcFhjXqT4W9ULGZDRH2qL8EvCupovjQn7/V0H/vnCGORth/NciEQiq1A==",
       "type": "package",
@@ -6666,33 +6669,6 @@
         "system.diagnostics.tracing.nuspec"
       ]
     },
-    "System.Drawing.Primitives/4.3.0": {
-      "sha512": "1QU/c35gwdhvj77fkScXQQbjiVAqIL3fEYn/19NE0CV/ic5TN5PyWAft8HsrbRd4SBLEoErNCkWSzMDc0MmbRw==",
-      "type": "package",
-      "path": "system.drawing.primitives/4.3.0",
-      "files": [
-        "ThirdPartyNotices.txt",
-        "dotnet_library_license.txt",
-        "lib/MonoAndroid10/_._",
-        "lib/MonoTouch10/_._",
-        "lib/net45/System.Drawing.Primitives.dll",
-        "lib/netstandard1.1/System.Drawing.Primitives.dll",
-        "lib/xamarinios10/_._",
-        "lib/xamarinmac20/_._",
-        "lib/xamarintvos10/_._",
-        "lib/xamarinwatchos10/_._",
-        "ref/MonoAndroid10/_._",
-        "ref/MonoTouch10/_._",
-        "ref/net45/System.Drawing.Primitives.dll",
-        "ref/netstandard1.1/System.Drawing.Primitives.dll",
-        "ref/xamarinios10/_._",
-        "ref/xamarinmac20/_._",
-        "ref/xamarintvos10/_._",
-        "ref/xamarinwatchos10/_._",
-        "system.drawing.primitives.4.3.0.nupkg.sha512",
-        "system.drawing.primitives.nuspec"
-      ]
-    },
     "System.Dynamic.Runtime/4.3.0": {
       "sha512": "0tNgpu856eaoImSRBbajn+PuTmMEqrD1Eq0joQOa5itpLfv7DhAlJ1e/MFvT4yykqnS3AES4HTB3sFII19zVUw==",
       "type": "package",
@@ -7567,6 +7543,31 @@
         "ref/xamarinwatchos10/_._",
         "system.linq.queryable.4.3.0.nupkg.sha512",
         "system.linq.queryable.nuspec"
+      ]
+    },
+    "System.Memory/4.4.0-preview1-25305-02": {
+      "sha512": "fpticQQnqSE6mOjajuAqypTuWRJ/6fDLozurzt2gXoFFWyl7CsrcrR6f5WBN9e+GCGQDyeeSs3yC7pncvZLgdA==",
+      "type": "package",
+      "path": "system.memory/4.4.0-preview1-25305-02",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/System.Memory.dll",
+        "lib/netstandard1.0/System.Memory.xml",
+        "lib/netstandard2.0/System.Memory.dll",
+        "lib/netstandard2.0/System.Memory.xml",
+        "ref/netstandard1.0/System.Memory.dll",
+        "ref/netstandard2.0/System.Memory.dll",
+        "runtimes/unix/lib/netcoreapp2.0/System.Memory.dll",
+        "runtimes/unix/lib/netcoreapp2.0/System.Memory.xml",
+        "runtimes/win/lib/netcoreapp2.0/System.Memory.dll",
+        "runtimes/win/lib/netcoreapp2.0/System.Memory.xml",
+        "runtimes/win/lib/uap10.1/System.Memory.dll",
+        "runtimes/win/lib/uap10.1/System.Memory.xml",
+        "system.memory.4.4.0-preview1-25305-02.nupkg.sha512",
+        "system.memory.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Net.Http/4.3.2": {
@@ -8627,17 +8628,23 @@
         "system.runtime.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.3.0": {
-      "sha512": "8ncLvq5AYwjgtX/e3vQniNQA+j9BRNPYVGQlvQBVqZ/L1+wIwErDCWUE0XHwENJw5MAkQ0tZW0YOxOBOcMukLw==",
+    "System.Runtime.CompilerServices.Unsafe/4.4.0-preview1-25305-02": {
+      "sha512": "keqowXVd5U8XgkRrZwiA4YCCW4TiuRyjl3Yld+12MW4tBXenjVEAiEyMxI/OnrHKUwvF7IKVE9DjHG+rBg5abg==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.3.0",
+      "path": "system.runtime.compilerservices.unsafe/4.4.0-preview1-25305-02",
       "files": [
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.3.0.nupkg.sha512",
-        "system.runtime.compilerservices.unsafe.nuspec"
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
+        "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+        "system.runtime.compilerservices.unsafe.4.4.0-preview1-25305-02.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
       ]
     },
     "System.Runtime.Extensions/4.3.0": {
@@ -10281,6 +10288,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.1": [
       "BuildBundlerMinifier >= 2.4.337",
+      "ImageSharp >= 1.0.0-*",
       "Microsoft.AspNetCore >= 1.1.2",
       "Microsoft.AspNetCore.Authentication.Cookies >= 1.1.2",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 1.1.2",
@@ -10290,8 +10298,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 1.1.2",
       "Microsoft.Extensions.Logging.Debug >= 1.1.2",
       "Microsoft.NETCore.App >= 1.1.2",
-      "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.2",
-      "PhotoSauce.MagicScaler >= 0.7.1"
+      "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.2"
     ]
   },
   "packageFolders": {
@@ -10352,10 +10359,6 @@
             "target": "Package",
             "version": "1.1.2"
           },
-          "PhotoSauce.MagicScaler": {
-            "target": "Package",
-            "version": "0.7.1"
-          },
           "BuildBundlerMinifier": {
             "target": "Package",
             "version": "2.4.337"
@@ -10367,6 +10370,10 @@
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
             "target": "Package",
             "version": "1.1.2"
+          },
+          "ImageSharp": {
+            "target": "Package",
+            "version": "1.0.0-*"
           }
         }
       }
