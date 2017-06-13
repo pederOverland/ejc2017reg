@@ -19,7 +19,7 @@ namespace ecreg.Controllers
     public class HomeController : Controller
     {
         private readonly EcRegDb _db;
-        private static ResizeOptions _resizeOptions = new ResizeOptions { Size = new Size(400, 400), Mode = ResizeMode.Max };
+        private static ResizeOptions _resizeOptions = new ResizeOptions { Size = new Size(600, 600), Mode = ResizeMode.Max };
         public HomeController(EcRegDb db)
         {
             _db = db;
