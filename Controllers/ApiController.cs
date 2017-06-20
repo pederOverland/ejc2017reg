@@ -40,7 +40,8 @@ namespace ecreg.Controllers
                 return this.NotFound();
             }
         }
-        [HttpGet("contestants")]
+        [HttpGet("contestants.xlsx")]
+        [Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")]
         public IActionResult Contestants([FromQuery] string pw)
         {
             var contestants = _db.Contestants.ToList();
@@ -54,6 +55,7 @@ namespace ecreg.Controllers
                 cells["D1"].Value = "Name";
                 cells["E1"].Value = "Passport #";
                 cells["F1"].Value = "BirthDate";
+                cells["G1"].Value = "Image";
                 var line = 2;
                 contestants.ForEach(c =>
                 {
@@ -63,12 +65,26 @@ namespace ecreg.Controllers
                     cells["D" + line].Value = c.Name;
                     cells["E" + line].Value = c.PassportNumber;
                     cells["F" + line].Value = c.BirthDate.ToString("dd/MM/yyyy");
+                    cells["G" + line].Value = "http://registration.ejc2017bergen.no/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg";
                     line++;
                 });
                 pkg.SaveAs(stream);
                 stream.Seek(0, SeekOrigin.Begin);
-                return this.File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                return this.File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "contestants.xlsx");
             }
+        }
+        [HttpGet("contestants.csv")]
+        public IActionResult ContestantsToCSV()
+        {
+            var contestants = _db.Contestants.ToList();
+            var response = "Id;Nation;Role;Name;PN;BD;Image\n";
+            contestants.ForEach(c =>
+            {
+                response += String.Format("{0};{1};{2};{3};{4};{5};{6}\n",
+            c.ContestantId,
+            c.Nation, c.Role, c.Name, c.PassportNumber, c.BirthDate.ToString("dd/MM/yyyy"), "http://registration.ejc2017bergen.no/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg");
+            });
+            return this.Ok(response);
         }
     }
 
