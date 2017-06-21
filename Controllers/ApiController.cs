@@ -40,7 +40,7 @@ namespace ecreg.Controllers
                 return this.NotFound();
             }
         }
-        [HttpGet("contestants.xlsx")]
+        [HttpGet("contestants")]
         [Produces("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")]
         public IActionResult Contestants([FromQuery] string pw)
         {
