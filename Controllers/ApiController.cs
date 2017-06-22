@@ -56,6 +56,7 @@ namespace ecreg.Controllers
                 cells["E1"].Value = "Passport #";
                 cells["F1"].Value = "BirthDate";
                 cells["G1"].Value = "Image";
+                cells["H1"].Value = "Last Changed";
                 var line = 2;
                 contestants.ForEach(c =>
                 {
@@ -66,6 +67,7 @@ namespace ecreg.Controllers
                     cells["E" + line].Value = c.PassportNumber;
                     cells["F" + line].Value = c.BirthDate.ToString("dd/MM/yyyy");
                     cells["G" + line].Value = "http://registration.ejc2017bergen.no/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg";
+                    cells["H" + line].Value = c.Modified.ToString();
                     line++;
                 });
                 pkg.SaveAs(stream);
