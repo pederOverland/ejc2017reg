@@ -53,8 +53,9 @@ namespace ecreg.Controllers
         }
 
 
-        private IEnumerable<Contestant> _getContestants(string nation){
-            return nation == "admin" ? _db.Contestants : _db.Contestants.Where(x=>x.Nation==nation);
+        private IEnumerable<Contestant> _getContestants(string nation)
+        {
+            return nation == "admin" ? _db.Contestants : _db.Contestants.Where(x => x.Nation == nation);
         }
 
         private string _getNation(ClaimsPrincipal user)
@@ -79,11 +80,18 @@ namespace ecreg.Controllers
             _db.SaveChanges();
             if (c.Picture != null)
             {
-                using (var image = Image.Load(c.Picture.OpenReadStream()))
+                try
                 {
-                    var outName = @"wwwroot/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg";
-                    image.MetaData.Quality = 75;
-                    image.Resize(_resizeOptions).AutoOrient().Save(outName);
+                    using (var image = Image.Load(c.Picture.OpenReadStream()))
+                    {
+                        var outName = @"wwwroot/profiles/" + c.ContestantId + "_" + c.Nation + ".jpg";
+                        image.MetaData.Quality = 75;
+                        image.Resize(_resizeOptions).AutoOrient().Save(outName);
+                    }
+                }
+                catch (Exception e) {
+                    Console.WriteLine(e.Message);
+                    return RedirectToAction("Error");
                 }
             }
             return RedirectToAction("Participants");
