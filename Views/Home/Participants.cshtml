@@ -97,7 +97,7 @@
     @foreach(var c in contestants){
         <div class="col-md-12">
                 <div class="col-md-2">
-                    <img class="img-responsive" src="@("/profiles/"+c.ContestantId+"_"+c.Nation+".jpg")" alt="">
+                    <img class="img-responsive" src="@("/profiles/"+c.ContestantId+"_"+c.Nation+".jpg")" alt="" asp-append-version="true">
                 </div>
                 <div class="col-md-7">
                     <h3>@c.Role <small>@c.Name</small></h3>

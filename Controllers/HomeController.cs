@@ -55,7 +55,7 @@ namespace ecreg.Controllers
 
         private IEnumerable<Contestant> _getContestants(string nation)
         {
-            return nation == "admin" ? _db.Contestants : _db.Contestants.Where(x => x.Nation == nation);
+            return nation == "admin" ? _db.Contestants.OrderByDescending(x=>x.Modified) : _db.Contestants.Where(x => x.Nation == nation);
         }
 
         private string _getNation(ClaimsPrincipal user)
